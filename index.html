@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perkenalan Mahasiswa AI IPB – Ganti dengan Namamu</title>
+  <meta name="description" content="Halaman perkenalan diri mahasiswa Ilmu Komputer/AI IPB University" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='24' fill='%230056D6'/%3E%3Cpath d='M28 88c0-22 18-40 40-40h10v-8H68C41 40 20 61 20 88v0c0 5 3 8 8 8h72v-8H28z' fill='white'/%3E%3Ccircle cx='84' cy='52' r='12' fill='white'/%3E%3C/svg%3E">
+  <style>
+    :root{
+      --bg:#0b1020;          /* dark */
+      --card:#111936;
+      --muted:#9fb1ff;
+      --txt:#EAF0FF;
+      --accent:#7C9DFF;
+      --glow: 0 10px 30px rgba(124,157,255,.35);
+      --ring: 0 0 0 3px rgba(124,157,255,.3);
+    }
+    :root.light{
+      --bg:#f6f8ff;          /* light */
+      --card:#ffffff;
+      --muted:#4b5ea9;
+      --txt:#0b1020;
+      --accent:#3B6BFF;
+      --glow: 0 10px 24px rgba(59,107,255,.22);
+      --ring: 0 0 0 3px rgba(59,107,255,.25);
+    }
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(124,157,255,.12), transparent 60%),
+                  radial-gradient(800px 600px at -20% 110%, rgba(59,107,255,.12), transparent 50%),
+                  var(--bg);
+      color:var(--txt);
+      line-height:1.6;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+
+    /* Header / Hero */
+    header{position:sticky; top:0; backdrop-filter: blur(10px); background:color-mix(in oklab, var(--bg), transparent 65%); border-bottom:1px solid color-mix(in oklab, var(--txt), transparent 92%); z-index:20}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
+    .brand .dot{width:10px; height:10px; border-radius:999px; background:var(--accent); box-shadow: var(--glow)}
+    .actions{display:flex; align-items:center; gap:10px}
+    .btn{border:none; background:var(--accent); color:white; padding:10px 16px; border-radius:14px; font-weight:600; cursor:pointer; box-shadow: var(--glow); transition:.2s transform}
+    .btn:hover{transform: translateY(-1px)}
+    .btn.ghost{background:transparent; color:var(--txt); border:1px solid color-mix(in oklab, var(--txt), transparent 80%); box-shadow:none}
+
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:24px; align-items:center; padding:30px 0 8px}
+    .card{background:var(--card); border:1px solid color-mix(in oklab, var(--txt), transparent 90%); border-radius:20px; padding:22px; box-shadow: var(--glow)}
+    .title{font-size:clamp(28px, 4.2vw, 48px); line-height:1.15; margin:4px 0}
+    .subtitle{opacity:.85; margin-top:6px}
+    .pill{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:999px; background:color-mix(in oklab, var(--accent), transparent 85%); color:var(--accent); font-weight:600; font-size:.92rem}
+
+    /* Avatar */
+    .avatar{aspect-ratio:1/1; width:min(100%, 360px); border-radius:22px; overflow:hidden; position:relative; margin:auto}
+    .avatar img{width:100%; height:100%; object-fit:cover}
+    .shine{position:absolute; inset:0; background: radial-gradient(600px 300px at 0% 0%, rgba(255,255,255,.18), transparent 40%)}
+
+    /* Sections */
+    section{margin:26px 0}
+    h2{font-size:clamp(22px, 3vw, 34px); margin:0 0 10px}
+    .grid{display:grid; gap:18px}
+    @media (min-width: 860px){
+      .grid.cols-2{grid-template-columns:1fr 1fr}
+      .grid.cols-3{grid-template-columns:repeat(3, 1fr)}
+    }
+
+    /* Biodata table */
+    table{width:100%; border-collapse:separate; border-spacing:0 10px}
+    th,td{padding:12px 14px; text-align:left}
+    th{width:220px; opacity:.75}
+    tr{background: var(--card); border:1px solid color-mix(in oklab, var(--txt), transparent 90%)}
+    tr td:first-child, tr th:first-child{border-radius:12px 0 0 12px}
+    tr td:last-child, tr th:last-child{border-radius:0 12px 12px 0}
+
+    /* Chips */
+    .chips{display:flex; flex-wrap:wrap; gap:10px}
+    .chip{padding:8px 12px; border-radius:999px; border:1px dashed color-mix(in oklab, var(--txt), transparent 80%); font-weight:600; background:color-mix(in oklab, var(--card), transparent 0%)}
+
+    /* Cards */
+    .link-card{display:flex; gap:14px; align-items:flex-start; padding:16px; border-radius:16px; border:1px solid color-mix(in oklab, var(--txt), transparent 90%); background:var(--card); transition:transform .2s, box-shadow .2s}
+    .link-card:hover{transform: translateY(-2px); box-shadow: var(--glow)}
+    .icon{width:36px; height:36px; display:grid; place-items:center; border-radius:10px; background:color-mix(in oklab, var(--accent), transparent 85%)}
+
+    footer{margin-top:36px; opacity:.75; text-align:center; padding:24px 0}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand" aria-label="Brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>IPB University · Mahasiswa AI</span>
+      </div>
+      <div class="actions">
+        <button id="themeToggle" class="btn ghost" aria-label="Ganti tema">🌗 Tema</button>
+        <a class="btn" href="#biodata">Lihat Biodata</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <div class="hero">
+      <section class="card">
+        <span class="pill">👋 Halo!</span>
+        <h1 class="title" id="typed">Saya <span class="name">Nama Lengkap Anda</span></h1>
+        <p class="subtitle">Mahasiswa <strong>Program Studi Kecerdasan Buatan (AI)</strong> – IPB University. Saya tertarik pada <em>machine learning</em>, pengembangan web, dan kolaborasi tim.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px">
+          <a class="btn" href="mailto:emailanda@ipb.ac.id">✉️ Hubungi Saya</a>
+          <a class="btn ghost" href="#tautan">🔗 Tautan</a>
+        </div>
+      </section>
+      <aside>
+        <div class="avatar card" aria-label="Foto Profil">
+          <!-- Ganti src dengan foto kamu, misalnya ./img/profile.jpg -->
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1080&auto=format&fit=crop" alt="Foto profil mahasiswa"/>
+          <div class="shine" aria-hidden="true"></div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- BIODATA -->
+    <section id="biodata">
+      <h2>📇 Biodata</h2>
+      <div class="card">
+        <table role="grid" aria-describedby="biodata">
+          <tbody>
+            <tr>
+              <th scope="row">Nama Lengkap</th>
+              <td>Nama Lengkap Anda</td>
+            </tr>
+            <tr>
+              <th scope="row">NIM</th>
+              <td>M0XXXXXXXX</td>
+            </tr>
+            <tr>
+              <th scope="row">Program Studi</th>
+              <td>S1 Kecerdasan Buatan, Sekolah Sains Data, Matematika, dan Informatika – IPB University</td>
+            </tr>
+            <tr>
+              <th scope="row">Nama Proxy</th>
+              <td>Contoh: "Sigma"</td>
+            </tr>
+            <tr>
+              <th scope="row">Email</th>
+              <td><a href="mailto:emailanda@ipb.ac.id">emailanda@ipb.ac.id</a></td>
+            </tr>
+            <tr>
+              <th scope="row">No. HP</th>
+              <td>08xx-xxxx-xxxx</td>
+            </tr>
+            <tr>
+              <th scope="row">Alamat Domisili</th>
+              <td>Kota/Kabupaten, Provinsi</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RINGKASAN -->
+    <section>
+      <h2>🧭 Tentang Saya</h2>
+      <div class="card">
+        <p>
+          Saya adalah mahasiswa yang antusias mempelajari komputasi modern dan pengaplikasiannya
+          untuk menyelesaikan masalah nyata. Ketertarikan saya meliputi <strong>machine learning</strong>,
+          <strong>pengolahan data</strong>, serta <strong>pengembangan web</strong>.
+          Saya suka bekerja dalam tim dan berkontribusi melalui komunikasi yang jelas dan eksekusi yang rapi.
+        </p>
+        <div class="chips" style="margin-top:10px">
+          <span class="chip">Python</span>
+          <span class="chip">C/C++</span>
+          <span class="chip">HTML · CSS · JS</span>
+          <span class="chip">Git & GitHub</span>
+          <span class="chip">Problem Solving</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAUTAN / SOSMED / PROJEK  -->
+    <section id="tautan">
+      <h2>🔗 Tautan & Portofolio</h2>
+      <div class="grid cols-3">
+        <a class="link-card" href="https://github.com/username" target="_blank" rel="noopener">
+          <div class="icon" aria-hidden="true">🐙</div>
+          <div>
+            <h3 style="margin:0">GitHub</h3>
+            <p style="margin:.2rem 0 0">Kumpulan repositori & proyek kecil.</p>
+          </div>
+        </a>
+        <a class="link-card" href="https://www.linkedin.com/in/username" target="_blank" rel="noopener">
+          <div class="icon" aria-hidden="true">💼</div>
+          <div>
+            <h3 style="margin:0">LinkedIn</h3>
+            <p style="margin:.2rem 0 0">Profil profesional & pengalaman.</p>
+          </div>
+        </a>
+        <a class="link-card" href="#" target="_blank" rel="noopener">
+          <div class="icon" aria-hidden="true">📄</div>
+          <div>
+            <h3 style="margin:0">CV / Resume</h3>
+            <p style="margin:.2rem 0 0">Tautan ke CV (Google Drive/Website).</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FUN INTERACTION -->
+    <section>
+      <h2>✨ Fun Facts</h2>
+      <div class="card">
+        <ul>
+          <li>Sedang belajar: Struktur Data, Algoritma, dan Dasar-Dasar AI.</li>
+          <li>Target: rutin mengerjakan proyek mini tiap bulan.</li>
+          <li>Motto: <em>Build, measure, learn.</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- KONTAK SINGKAT -->
+    <section>
+      <h2>📬 Kontak</h2>
+      <div class="grid cols-2">
+        <form class="card" onsubmit="event.preventDefault(); alert('Terima kasih! Pesan demo terkirim (non-aktif).');">
+          <label class="sr-only" for="nama">Nama</label>
+          <input id="nama" placeholder="Nama" required style="width:100%; padding:12px 14px; margin-bottom:10px; border-radius:12px; border:1px solid color-mix(in oklab, var(--txt), transparent 85%); background:var(--card); color:var(--txt)">
+          <label class="sr-only" for="pesan">Pesan</label>
+          <textarea id="pesan" placeholder="Pesan" rows="4" required style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid color-mix(in oklab, var(--txt), transparent 85%); background:var(--card); color:var(--txt)"></textarea>
+          <div style="display:flex; gap:8px; margin-top:10px">
+            <button type="submit" class="btn">Kirim</button>
+            <button type="reset" class="btn ghost">Reset</button>
+          </div>
+        </form>
+        <div class="card">
+          <p>Anda juga bisa langsung menghubungi saya melalui:</p>
+          <ul>
+            <li>Email kampus: <a href="mailto:emailanda@ipb.ac.id">emailanda@ipb.ac.id</a></li>
+            <li>Email pribadi: <a href="mailto:emailpribadi@example.com">emailpribadi@example.com</a></li>
+            <li>Instagram: <a href="https://instagram.com/username" target="_blank" rel="noopener">@username</a></li>
+          </ul>
+          <p style="margin-top:8px; opacity:.8">Catatan: Form di kiri hanya simulasi untuk tugas (tidak benar‑benar mengirim).</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Dibuat dengan HTML, CSS, dan JavaScript • Tema gelap/terang • © <span id="year"></span>
+    </footer>
+  </main>
+
+  <script>
+    // ======== Tema (Dark / Light) ========
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light') root.classList.add('light');
+    toggle.addEventListener('click', ()=>{
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // ======== Tahun footer ========
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ======== Ketik judul dinamis ========
+    const nameEl = document.querySelector('.name');
+    const typedEl = document.getElementById('typed');
+    const roles = [
+      'Mahasiswa Kecerdasan Buatan',
+      'Pembelajar Seumur Hidup',
+      'Calon Engineer Data',
+      'IPB University'
+    ];
+    let idx = 0;
+    function rotate(){
+      typedEl.querySelector('span.name').setAttribute('aria-hidden','true');
+      typedEl.innerHTML = `Saya <span class="name">${nameEl.textContent}</span> · <span style="font-weight:600">${roles[idx]}</span>`;
+      idx = (idx + 1) % roles.length;
+    }
+    setInterval(rotate, 2400);
+
+    // ======== Smooth anchor scroll ========
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
